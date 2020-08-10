@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lynx</title>
+    <style>
+      th,
+      td {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your links</h1>
+
+    <table>
+      <tr>
+        <th>Link</th>
+      </tr>
+      {{#links}}
+      <tr>
+        <td>
+          <a href="{{ url }}">{{ url }}</a>
+        </td>
+        <td>
+          <form action="/c/{{ slug }}/remove" method="post">
+            <input
+              style="display: none;"
+              type="text"
+              name="url"
+              value="{{ url }}"
+            />
+            <input type="submit" value="X" />
+          </form>
+        </td>
+      </tr>
+      {{/links}}
+    </table>
+
+    <h3>Add new link</h3>
+    <form action="/c/{{ slug }}/new" method="post">
+      <label>
+        URL:
+        <input type="text" name="url" placeholder="https://www.example.com" />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
